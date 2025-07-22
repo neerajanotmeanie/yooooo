@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To You, With Love 💌</title>
+  <style>
+    body {
+      margin: 0;
+      background: #fdf1dc;
+      font-family: "Comic Sans MS", cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 350px;
+      height: 250px;
+      cursor: pointer;
+    }
+
+    .envelope {
+      width: 100%;
+      height: 100%;
+      background: url("envelope.png") center/cover no-repeat;
+      position: absolute;
+      z-index: 2;
+      transition: transform 1s ease;
+      transform-origin: top center;
+    }
+
+    .flap-open {
+      transform: rotateX(180deg);
+    }
+
+    .letter {
+      position: absolute;
+      top: 30%;
+      left: 0;
+      width: 100%;
+      height: 300px;
+      background: url("letter.png") center/contain no-repeat;
+      background-size: contain;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+      z-index: 1;
+    }
+
+    .letter.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="envelope-wrapper" id="envelopeWrap">
+    <div class="envelope" id="envelopeFlap"></div>
+    <div class="letter" id="letterInside"></div>
+  </div>
+
+  <script>
+    const flap = document.getElementById("envelopeFlap");
+    const letter = document.getElementById("letterInside");
+    const wrap = document.getElementById("envelopeWrap");
+
+    wrap.addEventListener("click", () => {
+      flap.classList.add("flap-open");
+      setTimeout(() => {
+        letter.classList.add("show");
+      }, 700);
+    });
+  </script>
+
+</body>
+</html>
